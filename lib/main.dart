@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:water_resources/homepage.dart';
-import 'package:water_resources/login.dart';
-import 'package:water_resources/signin.dart';
+import 'package:water_resources/Pages/homepage.dart';
+import 'package:water_resources/Pages/login.dart';
+import 'package:water_resources/Pages/signin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,23 +15,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late TextEditingController myController1;
-  late TextEditingController myController2;
-  late TextEditingController myController3;
+  late TextEditingController controller1;
+  late TextEditingController controller2;
+  late TextEditingController controller3;
 
   @override
   void initState() {
     super.initState();
-    myController1 = TextEditingController();
-    myController2 = TextEditingController();
-    myController3 = TextEditingController();
+    controller1 = TextEditingController();
+    controller2 = TextEditingController();
+    controller3 = TextEditingController();
   }
 
   @override
   void dispose() {
-    myController1.dispose();
-    myController2.dispose();
-    myController3.dispose(); // Dispose the controller to prevent memory leaks
+    controller1.dispose();
+    controller2.dispose();
+    controller3.dispose(); // Dispose the controller to prevent memory leaks
     super.dispose();
   }
 
@@ -43,26 +43,28 @@ class _MyAppState extends State<MyApp> {
               foregroundColor: Colors.white,
               backgroundColor: Color.fromRGBO(13, 75, 150, 1))),
       debugShowCheckedModeBanner: false,
+      //MAIN PAGE WITH PARAMETERS
+      home: const HomePage(
+        name: 'Dinesh',
+        tds: 7,
+        turbidity: 0.333,
+        temperature: 5,
+        dO: 54,
+        pH: 0,
+        pressure: 0,
+        depth: 0,
+        flowDischarge: 0,
+      ),
 
-      // home: const HomePage(
-      //   name: 'Dinesh',
-      //   tds: 7,
-      //   turbidity: 0.333,
-      //   temperature: 5,
-      //   dO: 54,
-      //   pH: 0,
-      //   pressure: 0,
-      //   depth: 0,
-      //   flowDischarge: 0,
-      // ),
-
+      //SIGNIN PAGE WITH 3 TEXT FIELD CONTROLLERS
       // home: Signin(
-      //   email: myController1,
-      //   pwd: myController2,
-      //   confirmpwd: myController3,
+      //   email: controller1,
+      //   pwd: controller2,
+      //   confirmpwd: controller3,
       // ),
 
-      home: LogIn(email: myController1, password: myController2),
+      //LOGIN PAGE WITH 2 TEXTFIELD CONTROLLERS
+      // home: LogIn(email: controller1, password:controller2,),
     );
   }
 }

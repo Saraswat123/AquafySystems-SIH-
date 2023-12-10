@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:water_resources/widgets.dart';
+import 'package:water_resources/Pages/widgets.dart';
 
 class HomePage extends StatefulWidget {
   final String name;
@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
   final double flowDischarge;
   const HomePage(
       {Key? key,
-      required this.name,
+      this.name = '',
       required this.tds,
       required this.turbidity,
       required this.temperature,
@@ -34,9 +34,7 @@ class _HomePageState extends State<HomePage> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {});
-        },
+        onPressed: () {},
         child: const Icon(Icons.refresh),
       ),
       body: Container(
@@ -59,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                       FontText(
                           text: 'Testing Water',
                           weight: FontWeight.bold,
-                          size: height * 0.035),
+                          size: height * 0.04),
                       FontText(
                         text: getGreeting(),
                         weight: FontWeight.w100,

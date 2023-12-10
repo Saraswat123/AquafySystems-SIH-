@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:water_resources/widgets.dart';
+import 'package:water_resources/Pages/widgets.dart';
 
 // ignore: must_be_immutable
-class LogIn extends StatefulWidget {
+class Signin extends StatefulWidget {
   TextEditingController email;
-  TextEditingController password;
-  LogIn({
+  TextEditingController pwd;
+  TextEditingController confirmpwd;
+
+  Signin({
     Key? key,
     required this.email,
-    required this.password,
+    required this.pwd,
+    required this.confirmpwd,
   }) : super(key: key);
 
   @override
-  State<LogIn> createState() => _LogInState();
+  State<Signin> createState() => _SigninState();
 }
 
-class _LogInState extends State<LogIn> {
+class _SigninState extends State<Signin> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -40,7 +43,7 @@ class _LogInState extends State<LogIn> {
                       height: height * 0.15,
                     ),
                     FontText(
-                        text: "Log In",
+                        text: "Sign In",
                         weight: FontWeight.w300,
                         size: height * 0.06),
                     SizedBox(
@@ -56,32 +59,43 @@ class _LogInState extends State<LogIn> {
                     ),
                     InBox(
                       name: 'Password:',
-                      controller: widget.password,
+                      controller: widget.pwd,
                       obscure: true,
                     ),
                     SizedBox(
-                      height: height * 0.05,
+                      height: height * 0.03,
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.only(bottom: 10),
-                      height: height * 0.05,
-                      width: width * 0.4,
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(69, 166, 255, 1),
-                        borderRadius: BorderRadius.circular(30),
+                    InBox(
+                      name: 'Confirm Password:',
+                      controller: widget.confirmpwd,
+                      obscure: true,
+                    ),
+                    SizedBox(
+                      height: height * 0.04,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.only(bottom: 10),
+                        height: height * 0.05,
+                        width: width * 0.4,
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(69, 166, 255, 1),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: FontText(
+                            text: "Confirm",
+                            weight: FontWeight.w100,
+                            size: height * 0.03),
                       ),
-                      child: FontText(
-                          text: "Confirm",
-                          weight: FontWeight.w100,
-                          size: height * 0.03),
                     )
                   ],
                 ),
                 TextButton(
                     onPressed: () {},
                     child: FontText(
-                        text: "Isn't Signed in, Sign in.",
+                        text: "Already signed in, Log in.",
                         weight: FontWeight.w100,
                         size: height * 0.02)),
               ],

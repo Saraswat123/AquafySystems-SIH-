@@ -46,8 +46,8 @@ class ParameterBox extends StatelessWidget {
           height: height * 0.13,
           decoration: BoxDecoration(
               gradient: const LinearGradient(colors: [
-                Color.fromRGBO(36, 215, 254, 1),
-                Color.fromRGBO(149, 253, 255, 1)
+                Color.fromRGBO(36, 156, 254, 1),
+                Color.fromRGBO(108, 215, 250, 1),
               ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
               borderRadius: BorderRadius.circular(30)),
           child: Padding(

@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:water_resources/widgets.dart';
+import 'package:water_resources/Pages/widgets.dart';
 
 // ignore: must_be_immutable
-class Signin extends StatefulWidget {
+class LogIn extends StatefulWidget {
   TextEditingController email;
-  TextEditingController pwd;
-  TextEditingController confirmpwd;
-  Signin(
-      {Key? key,
-      required this.email,
-      required this.pwd,
-      required this.confirmpwd})
-      : super(key: key);
+  TextEditingController password;
+  LogIn({
+    Key? key,
+    required this.email,
+    required this.password,
+  }) : super(key: key);
 
   @override
-  State<Signin> createState() => _SigninState();
+  State<LogIn> createState() => _LogInState();
 }
 
-class _SigninState extends State<Signin> {
+class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: Container(
           width: double.infinity,
@@ -42,7 +39,7 @@ class _SigninState extends State<Signin> {
                       height: height * 0.15,
                     ),
                     FontText(
-                        text: "Sign In",
+                        text: "Log In",
                         weight: FontWeight.w300,
                         size: height * 0.06),
                     SizedBox(
@@ -58,40 +55,35 @@ class _SigninState extends State<Signin> {
                     ),
                     InBox(
                       name: 'Password:',
-                      controller: widget.pwd,
+                      controller: widget.password,
                       obscure: true,
                     ),
                     SizedBox(
-                      height: height * 0.03,
-                    ),
-                    InBox(
-                      name: 'Confirm Password:',
-                      controller: widget.confirmpwd,
-                      obscure: true,
-                    ),
-                    SizedBox(
-                      height: height * 0.04,
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.only(bottom: 10),
                       height: height * 0.05,
-                      width: width * 0.4,
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(69, 166, 255, 1),
-                        borderRadius: BorderRadius.circular(30),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.only(bottom: 10),
+                        height: height * 0.05,
+                        width: width * 0.4,
+                        decoration: BoxDecoration(
+                          color: const Color.fromRGBO(69, 166, 255, 1),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: FontText(
+                            text: "Confirm",
+                            weight: FontWeight.w100,
+                            size: height * 0.03),
                       ),
-                      child: FontText(
-                          text: "Confirm",
-                          weight: FontWeight.w100,
-                          size: height * 0.03),
                     )
                   ],
                 ),
                 TextButton(
                     onPressed: () {},
                     child: FontText(
-                        text: "Already signed in, Log in.",
+                        text: "Isn't Signed in, Sign in.",
                         weight: FontWeight.w100,
                         size: height * 0.02)),
               ],

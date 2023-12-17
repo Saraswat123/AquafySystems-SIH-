@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "803289000101",
+    "firebase_url": "https://waterproject-8c1a3-default-rtdb.firebaseio.com",
+    "project_id": "waterproject-8c1a3",
+    "storage_bucket": "waterproject-8c1a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803289000101:android:cd304cd794d0ab7819054c",
+        "android_client_info": {
+          "package_name": "com.example.water_resources"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8i5uEskZAFEzcHwQB-l1jsh2vWJWPVso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,9 +1,22 @@
+import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:water_resources/Pages/homepage.dart';
-import 'package:water_resources/Pages/login.dart';
-import 'package:water_resources/Pages/signin.dart';
 
-void main() {
+import 'package:water_resources/navigator.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+            apiKey: "AIzaSyC8i5uEskZAFEzcHwQB-l1jsh2vWJWPVso",
+            appId: "1:803289000101:android:cd304cd794d0ab7819054c",
+            messagingSenderId: "803289000101",
+            projectId: "waterproject-8c1a3",
+          ),
+        )
+      : await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -15,56 +28,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late TextEditingController controller1;
-  late TextEditingController controller2;
-  late TextEditingController controller3;
-
-  @override
-  void initState() {
-    super.initState();
-    controller1 = TextEditingController();
-    controller2 = TextEditingController();
-    controller3 = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    controller1.dispose();
-    controller2.dispose();
-    controller3.dispose(); // Dispose the controller to prevent memory leaks
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-              foregroundColor: Colors.white,
-              backgroundColor: Color.fromRGBO(13, 75, 150, 1))),
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      //MAIN PAGE WITH PARAMETERS
-      home: const HomePage(
-        name: 'Dinesh',
-        tds: 7,
-        turbidity: 0.333,
-        temperature: 5,
-        dO: 54,
-        pH: 0,
-        pressure: 0,
-        depth: 0,
-        flowDischarge: 0,
-      ),
-
-      //SIGNIN PAGE WITH 3 TEXT FIELD CONTROLLERS
-      // home: Signin(
-      //   email: controller1,
-      //   pwd: controller2,
-      //   confirmpwd: controller3,
-      // ),
-
-      //LOGIN PAGE WITH 2 TEXTFIELD CONTROLLERS
-      // home: LogIn(email: controller1, password:controller2,),
+      home: Screen(),
     );
   }
 }

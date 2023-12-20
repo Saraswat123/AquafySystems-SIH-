@@ -1,9 +1,10 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:water_resources/Pages/notify.dart';
 import 'package:water_resources/Pages/watercondition.dart';
 import 'package:water_resources/Pages/widgets.dart';
 
@@ -21,6 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
   late double turbidity;
   late double pH;
   bool isSafe = false;
+  bool isNotificationOn = false;
   late String name = '';
   late String email = '';
 
@@ -31,6 +33,8 @@ class _ProfilePageState extends State<ProfilePage> {
     _initDatabaseListener();
     getUserName();
   }
+
+  Future isNotified() async {}
 
   void _initDatabaseListener() async {
     ref.onValue.listen((DatabaseEvent event) {
@@ -112,143 +116,149 @@ class _ProfilePageState extends State<ProfilePage> {
     } else {
       return SafeArea(
         child: Scaffold(
-          body: Container(
-            padding: const EdgeInsets.only(top: 30),
-            width: width,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('lib/Resources/BG.png'), fit: BoxFit.cover),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_rounded,
-                        size: height * 0.045,
-                        color: Colors.white,
-                      )),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: width,
-                        height: height * 0.3,
-                        child: FittedBox(
-                          child: Row(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                    horizontal: width * 0.06),
-                                padding: const EdgeInsets.all(50),
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(30)),
-                                  color: (isSafe)
-                                      ? const Color.fromARGB(255, 5, 130, 94)
-                                      : const Color.fromARGB(255, 255, 62, 62),
+          body: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.only(top: 30),
+              width: width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('lib/Resources/BG.png'),
+                    fit: BoxFit.cover),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_rounded,
+                          size: height * 0.045,
+                          color: Colors.white,
+                        )),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: width,
+                          height: height * 0.3,
+                          child: FittedBox(
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: width * 0.06),
+                                  padding: const EdgeInsets.all(50),
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(30)),
+                                    color: (isSafe)
+                                        ? const Color.fromARGB(255, 5, 130, 94)
+                                        : const Color.fromARGB(
+                                            255, 255, 62, 62),
+                                  ),
+                                  child: FontText(
+                                    text: (isSafe)
+                                        ? "Water is\nfit for drinking."
+                                        : 'Water is not\nfit for drinking.',
+                                    weight: FontWeight.bold,
+                                    size: height * 0.05,
+                                    maxlines: 2,
+                                  ),
                                 ),
-                                child: FontText(
-                                  text: (isSafe)
-                                      ? "Water is\nfit for drinking."
-                                      : 'Water is not\nfit for drinking.',
-                                  weight: FontWeight.bold,
-                                  size: height * 0.05,
-                                  maxlines: 2,
-                                ),
-                              ),
-                              SizedBox(
-                                height: height * 0.3,
-                                child: (isSafe)
-                                    ? Image.asset('lib/Resources/drink.png')
-                                    : Image.asset('lib/Resources/fever.png'),
-                              )
-                            ],
+                                SizedBox(
+                                  height: height * 0.3,
+                                  child: (isSafe)
+                                      ? Image.asset('lib/Resources/drink.png')
+                                      : Image.asset('lib/Resources/fever.png'),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: height * 0.07),
-                        width: width,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                            image: DecorationImage(
-                                image: AssetImage('lib/Resources/BG2.png'),
-                                fit: BoxFit.cover)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    width: width,
-                                    child: Icon(
-                                      Icons.account_circle,
-                                      color: const Color.fromARGB(
-                                          255, 124, 117, 117),
-                                      size: height * 0.15,
+                        Container(
+                          padding: EdgeInsets.only(top: height * 0.07),
+                          width: width,
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
+                              image: DecorationImage(
+                                  image: AssetImage('lib/Resources/BG2.png'),
+                                  fit: BoxFit.cover)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      width: width,
+                                      child: Icon(
+                                        Icons.account_circle,
+                                        color: const Color.fromARGB(
+                                            255, 124, 117, 117),
+                                        size: height * 0.15,
+                                      ),
                                     ),
-                                  ),
-                                  ProfileDetailsTab(
-                                      parameter: 'Name:', value: name),
-                                  SizedBox(
-                                    width: width * 0.8,
-                                    child: const Divider(
-                                      thickness: 2,
-                                    ),
-                                  ),
-                                  ProfileDetailsTab(
-                                      parameter: 'Email:', value: email),
-                                  SizedBox(
-                                    width: width * 0.8,
-                                    child: const Divider(
-                                      thickness: 2,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.04,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      FirebaseAuth.instance.signOut();
-                                      Timer(const Duration(seconds: 2), () {});
-                                      Navigator.pop(context);
-                                    },
-                                    child: Container(
+                                    ProfileDetailsTab(
+                                        parameter: 'Name:', value: name),
+                                    SizedBox(
                                       width: width * 0.8,
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
-                                        color:
-                                            Color.fromARGB(255, 103, 177, 198),
-                                      ),
-                                      child: FontText(
-                                        text: "Log out",
-                                        align: TextAlign.center,
-                                        weight: FontWeight.w100,
-                                        size: height * 0.03,
+                                      child: const Divider(
+                                        thickness: 2,
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.03,
-                                  )
-                                ],
+                                    ProfileDetailsTab(
+                                        parameter: 'Email:', value: email),
+                                    SizedBox(
+                                      width: width * 0.8,
+                                      child: const Divider(
+                                        thickness: 2,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.04,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        FirebaseAuth.instance.signOut();
+                                        Timer(
+                                            const Duration(seconds: 2), () {});
+                                        Navigator.pop(context);
+                                      },
+                                      child: Container(
+                                        width: width * 0.8,
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          color: Color.fromARGB(
+                                              255, 103, 177, 198),
+                                        ),
+                                        child: FontText(
+                                          text: "Log out",
+                                          align: TextAlign.center,
+                                          weight: FontWeight.w100,
+                                          size: height * 0.03,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.03,
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ],
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

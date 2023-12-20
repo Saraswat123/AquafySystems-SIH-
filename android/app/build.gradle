@@ -29,14 +29,10 @@ if (keystorePropertiesFile.exists()) {
    }
 
 android {
+    compileSdkVersion 33
     namespace "com.example.water_resources"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 
     kotlinOptions {
         jvmTarget = '1.8'
@@ -56,6 +52,12 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
+        
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     signingConfigs {
@@ -81,4 +83,8 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
+    implementation 'androidx.window:window:1.0.0'
+    implementation 'androidx.window:window-java:1.0.0'
+}

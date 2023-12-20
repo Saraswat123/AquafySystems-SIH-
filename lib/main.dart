@@ -1,11 +1,13 @@
 import 'dart:io';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
+import 'package:water_resources/Pages/notify.dart';
 import 'package:water_resources/navigator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   Platform.isAndroid
       ? await Firebase.initializeApp(
           options: const FirebaseOptions(
@@ -16,7 +18,11 @@ void main() async {
           ),
         )
       : await Firebase.initializeApp();
+  await AndroidAlarmManager.initialize();
 
+  await LocalNotification.init();
+  await AndroidAlarmManager.periodic(
+      const Duration(minutes: 1), 1, backgroundFunction);
   runApp(const MyApp());
 }
 

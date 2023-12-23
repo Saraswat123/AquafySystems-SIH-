@@ -42,7 +42,7 @@ class LocalNotification {
     );
   }
 
-  static Future showNotification() async {
+  static Future showNotification(int id, String title, String body) async {
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails('your channel id', 'your channel name',
             channelDescription: 'your channel description',
@@ -52,9 +52,8 @@ class LocalNotification {
     const NotificationDetails notificationDetails =
         NotificationDetails(android: androidNotificationDetails);
 
-    await _flutterLocalNotificationsPlugin.show(0, 'Water Quality Alert!!!',
-        'Water is not fit for drinking', notificationDetails,
-        payload: 'item x');
+    await _flutterLocalNotificationsPlugin
+        .show(id, title, body, notificationDetails, payload: 'item x');
   }
 
   static Future requestNotificationPermission() async {
@@ -127,11 +126,14 @@ class DatabaseCollector {
         bool notificationSent = prefs.getBool('notification_sent') ?? false;
 
         if (!isSafe && !notificationSent) {
-          LocalNotification.showNotification();
+          LocalNotification.showNotification(
+              0, 'Water Quality Alert!!!', 'Water is not fit for drinking');
           print('IsNotified set to true ---------------------------------');
           await prefs.setBool('notification_sent', true);
         }
         if (isSafe) {
+          LocalNotification.showNotification(
+              1, 'Water Quality Alert!!!', 'Water is not fit for drinking');
           print('IsNotified set to false ---------------------------------');
           await prefs.setBool('notification_sent', false);
         }

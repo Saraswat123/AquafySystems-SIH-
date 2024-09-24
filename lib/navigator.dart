@@ -1,8 +1,8 @@
+import 'package:aquafy_systems/Pages/login.dart';
+import 'package:aquafy_systems/Pages/register.dart';
+import 'package:aquafy_systems/Pages/verify.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:water_resources/Pages/login.dart';
-import 'package:water_resources/Pages/signin.dart';
-import 'package:water_resources/Pages/verify.dart';
 
 //to check if the email is verified
 class Screen extends StatelessWidget {

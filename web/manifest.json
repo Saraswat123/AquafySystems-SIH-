@@ -1,9 +1,9 @@
 {
-    "name": "water_resources",
-    "short_name": "water_resources",
+    "name": "aquafy_systems",
+    "short_name": "aquafy_systems",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
+    "background_color": "#ffffff",
     "theme_color": "#0175C2",
     "description": "A new Flutter project.",
     "orientation": "portrait-primary",

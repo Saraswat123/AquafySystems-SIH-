@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 //Text with Maven Pro font
 class FontText extends StatelessWidget {
   final String text;
@@ -37,7 +36,6 @@ class FontText extends StatelessWidget {
   }
 }
 
-
 //Homepage Parametrers Box
 class ParameterBox extends StatelessWidget {
   final String parameter;
@@ -45,13 +43,16 @@ class ParameterBox extends StatelessWidget {
   final String unit;
   final String condition;
   final Color color;
-  const ParameterBox(
-      {super.key,
-      required this.parameter,
-      required this.value,
-      required this.unit,
-      this.condition = '',
-      this.color = Colors.red});
+  final bool overflow;
+  const ParameterBox({
+    super.key,
+    required this.parameter,
+    required this.value,
+    required this.unit,
+    this.condition = '',
+    this.color = Colors.red,
+    this.overflow = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +111,8 @@ class ParameterBox extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: width * 0.05),
       decoration: BoxDecoration(
           gradient: const LinearGradient(colors: [
-            Color.fromRGBO(36, 156, 254, 1),
-            Color.fromRGBO(108, 215, 250, 1),
+            Color(0xFF1E185F),
+            Color(0xFF3E32C5),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
           borderRadius: BorderRadius.circular(30)),
       child: Row(
@@ -130,12 +131,12 @@ class ParameterBox extends StatelessWidget {
                 Row(
                   children: [
                     FontText(
-                        text: "State:",
+                        text: "State: ",
                         weight: FontWeight.w100,
                         size: height * 0.02),
                     FontText(
                         text: condition,
-                        weight: FontWeight.w100,
+                        weight: FontWeight.bold,
                         size: height * 0.02,
                         color: color),
                   ],
@@ -143,12 +144,12 @@ class ParameterBox extends StatelessWidget {
             ],
           ),
           SizedBox(
-            width: width * 0.4,
             child: FontText(
-              text: power(value) + unit,
+              text: (overflow) ? "${power(value)}\n$unit" : power(value) + unit,
               weight: FontWeight.w300,
               size: height * 0.022,
               align: TextAlign.end,
+              overflow: (overflow) ? TextOverflow.visible : TextOverflow.fade,
             ),
           ),
         ],
@@ -156,7 +157,6 @@ class ParameterBox extends StatelessWidget {
     );
   }
 }
-
 
 //Get good morning, good afternoon and good evening messages
 String getGreeting() {
@@ -176,11 +176,12 @@ class InBox extends StatelessWidget {
   final String name;
   final bool obscure;
   final TextEditingController controller;
-  const InBox(
-      {super.key,
-      required this.name,
-      this.obscure = false,
-      required this.controller});
+  const InBox({
+    super.key,
+    required this.name,
+    this.obscure = false,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -189,26 +190,30 @@ class InBox extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        FontText(text: "  $name", weight: FontWeight.w100, size: height * 0.03),
+        FontText(text: " $name", weight: FontWeight.w100, size: height * 0.02),
         Container(
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 6),
           height: height * 0.05,
           width: width * 0.8,
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(30)),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
           child: TextField(
             style: TextStyle(
-                fontSize: height * 0.018,
-                fontFamily: "MavenPro",
-                fontWeight: FontWeight.w100,
-                color: Colors.black,
-                overflow: TextOverflow.ellipsis),
+              fontSize: height * 0.018,
+              fontFamily: "MavenPro",
+              fontWeight: FontWeight.w200,
+              color: Colors.black,
+              overflow: TextOverflow.ellipsis,
+            ),
             controller: controller,
             obscureText: obscure,
             obscuringCharacter: "*",
             decoration: const InputDecoration(
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none),
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+            ),
           ),
         )
       ],

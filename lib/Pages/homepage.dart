@@ -1,15 +1,17 @@
+import 'package:aquafy_systems/Pages/prediction.dart';
+import 'package:aquafy_systems/utilities/get_prediction.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:water_resources/Pages/profile.dart';
-import 'package:water_resources/Pages/watercondition.dart';
+import 'profile.dart';
+import 'watercondition.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:water_resources/Pages/widgets.dart';
+import 'widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -30,6 +32,7 @@ class _HomePageState extends State<HomePage> {
   late double flowDischarge;
   late double inflow;
   late double outflow;
+
   @override
   void initState() {
     super.initState();
@@ -117,8 +120,7 @@ class _HomePageState extends State<HomePage> {
             width: width,
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('lib/Resources/BG.png'),
-                    fit: BoxFit.cover)),
+                    image: AssetImage('assets/BG.png'), fit: BoxFit.cover)),
             child: ListView(
               children: [
                 Padding(
@@ -155,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                           );
                         },
                         icon: Icon(
-                          Icons.account_circle,
+                          Icons.person,
                           size: height * 0.06,
                           color: Colors.white,
                         ),
@@ -170,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30)),
                       image: DecorationImage(
-                          image: AssetImage('lib/Resources/BG2.png'),
+                          image: AssetImage('assets/BG2.png'),
                           fit: BoxFit.cover)),
                   child: Padding(
                     padding:
@@ -180,9 +182,9 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         FontText(
                           text: "Water Quality Index",
-                          weight: FontWeight.w100,
+                          weight: FontWeight.bold,
                           size: height * 0.03,
-                          color: const Color.fromRGBO(1, 133, 183, 1),
+                          color: const Color(0xFF3E32C5),
                         ),
                         SizedBox(height: height * 0.02),
                         ParameterBox(
@@ -191,14 +193,16 @@ class _HomePageState extends State<HomePage> {
                           unit: 'mg/L',
                           condition: conditionString[tdsState(tds)],
                           color: conditionColor[tdsState(tds)],
+                          overflow: true,
                         ),
                         ParameterBox(
-                            parameter: 'Turbidity',
-                            value: turbidity,
-                            unit: 'NTU',
-                            condition:
-                                conditionString[turbidityState(turbidity)],
-                            color: conditionColor[turbidityState(turbidity)]),
+                          parameter: 'Turbidity',
+                          value: turbidity,
+                          unit: 'NTU',
+                          condition: conditionString[turbidityState(turbidity)],
+                          color: conditionColor[turbidityState(turbidity)],
+                          overflow: false,
+                        ),
                         ParameterBox(
                           parameter: 'Temperature',
                           value: temperature,
@@ -217,9 +221,9 @@ class _HomePageState extends State<HomePage> {
                             color: conditionColor[phState(pH)]),
                         FontText(
                           text: "Water Quantity Index",
-                          weight: FontWeight.w100,
+                          weight: FontWeight.bold,
                           size: height * 0.03,
-                          color: const Color.fromRGBO(1, 133, 183, 1),
+                          color: const Color(0xFF3E32C5),
                         ),
                         SizedBox(height: height * 0.02),
                         ParameterBox(
@@ -238,6 +242,7 @@ class _HomePageState extends State<HomePage> {
                               parameter: 'Flow Discharge',
                               value: flowDischarge,
                               unit: 'L/min',
+                              overflow: true,
                             ),
                           ),
                         if (isflowtapped)
@@ -257,6 +262,43 @@ class _HomePageState extends State<HomePage> {
                                   unit: 'L/min'),
                             ),
                           ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Center(
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              shape: WidgetStatePropertyAll(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                              ),
+                              textStyle: const WidgetStatePropertyAll(
+                                TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              ),
+                              foregroundColor:
+                                  const WidgetStatePropertyAll(Colors.white),
+                              backgroundColor: const WidgetStatePropertyAll(
+                                Color.fromARGB(255, 103, 177, 198),
+                              ),
+                              padding: const WidgetStatePropertyAll(
+                                EdgeInsets.all(15),
+                              ),
+                            ),
+                            child: const Text("Get Lifespan and Efficiency"),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const PredictionPage()),
+                              );
+
+                              getPrediction();
+                            },
+                          ),
+                        ),
                         SizedBox(
                           height: height * 0.03,
                         ),

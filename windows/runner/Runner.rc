@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "water_resources" "\0"
+            VALUE "FileDescription", "aquafy_systems" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "water_resources" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "water_resources.exe" "\0"
-            VALUE "ProductName", "water_resources" "\0"
+            VALUE "InternalName", "aquafy_systems" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
+            VALUE "OriginalFilename", "aquafy_systems.exe" "\0"
+            VALUE "ProductName", "aquafy_systems" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

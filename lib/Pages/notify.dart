@@ -6,7 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:water_resources/Pages/watercondition.dart';
+import 'watercondition.dart';
 
 final ref = FirebaseDatabase.instance.ref().child('waterProject');
 double tds = 0;
@@ -23,8 +23,7 @@ class LocalNotification {
         AndroidInitializationSettings('@mipmap/launcher_icon');
     final DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings(
-            onDidReceiveLocalNotification: ((id, title, body, payload) =>
-                null));
+            onDidReceiveLocalNotification: ((id, title, body, payload) {}));
     // final LinuxInitializationSettings initializationSettingsLinux =
     //     LinuxInitializationSettings(defaultActionName: 'Open notification');
     final InitializationSettings initializationSettings =

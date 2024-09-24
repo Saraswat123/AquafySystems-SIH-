@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:water_resources/Pages/homepage.dart';
-import 'package:water_resources/Pages/widgets.dart';
-import 'package:water_resources/navigator.dart';
+import 'homepage.dart';
+import 'widgets.dart';
+import 'package:aquafy_systems/navigator.dart';
 
 // ignore: must_be_immutable
 class VerifyEmail extends StatefulWidget {
@@ -65,7 +65,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
               height: MediaQuery.of(context).size.height,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('lib/Resources/BG.png'),
+                      image: AssetImage('assets/BG.png'),
                       fit: BoxFit.cover)),
               child: Center(
                 child: Container(
@@ -76,7 +76,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       image: const DecorationImage(
-                          image: AssetImage('lib/Resources/BG2.png'),
+                          image: AssetImage('assets/BG2.png'),
                           fit: BoxFit.cover)),
                   child: Column(
                     children: [
@@ -103,7 +103,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                       (canResendEmail)
                           ? ElevatedButton(
                               style: const ButtonStyle(
-                                  backgroundColor: MaterialStatePropertyAll(
+                                  backgroundColor: WidgetStatePropertyAll(
                                       Color.fromARGB(255, 17, 162, 215))),
                               onPressed: () {
                                 timer?.cancel();

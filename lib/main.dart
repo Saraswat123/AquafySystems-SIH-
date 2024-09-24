@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:aquafy_systems/Pages/notify.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:water_resources/Pages/notify.dart';
-import 'package:water_resources/navigator.dart';
+import 'package:aquafy_systems/navigator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

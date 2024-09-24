@@ -1,4 +1,4 @@
-# water_resources
+# aquafy_systems
 
 A new Flutter project.
 

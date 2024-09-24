@@ -1,12 +1,11 @@
 import 'dart:async';
+import 'package:aquafy_systems/Pages/login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:water_resources/Pages/notify.dart';
-import 'package:water_resources/Pages/watercondition.dart';
-import 'package:water_resources/Pages/widgets.dart';
+import 'watercondition.dart';
+import 'widgets.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -122,8 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
               width: width,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('lib/Resources/BG.png'),
-                    fit: BoxFit.cover),
+                    image: AssetImage('assets/BG.png'), fit: BoxFit.cover),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -150,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: [
                                 Container(
                                   margin: EdgeInsets.symmetric(
-                                      horizontal: width * 0.06),
+                                      horizontal: width * 0.1),
                                   padding: const EdgeInsets.all(50),
                                   decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
@@ -170,23 +168,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: height * 0.3,
+                                  height: height * 0.4,
                                   child: (isSafe)
-                                      ? Image.asset('lib/Resources/drink.png')
-                                      : Image.asset('lib/Resources/fever.png'),
+                                      ? Image.asset('assets/drink.png')
+                                      : Image.asset('assets/fever.png'),
                                 )
                               ],
                             ),
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(top: height * 0.07),
+                          padding: EdgeInsets.only(top: height * 0.09),
                           width: width,
                           decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30)),
                               image: DecorationImage(
-                                  image: AssetImage('lib/Resources/BG2.png'),
+                                  image: AssetImage('assets/BG2.png'),
                                   fit: BoxFit.cover)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -227,7 +225,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                         FirebaseAuth.instance.signOut();
                                         Timer(
                                             const Duration(seconds: 2), () {});
-                                        Navigator.pop(context);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                LogIn(showSigninPage: () {}),
+                                          ),
+                                        );
                                       },
                                       child: Container(
                                         width: width * 0.8,

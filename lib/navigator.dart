@@ -25,7 +25,6 @@ class Screen extends StatelessWidget {
   }
 }
 
-
 //For login and signin
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -46,17 +45,9 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     if (showLoginPage) {
-      return LogIn(
-        showSigninPage: () {
-          toggle();
-        },
-      );
+      return LogIn();
     } else {
-      return Signin(
-        showLoginPage: () {
-          toggle();
-        },
-      );
+      return const Signin();
     }
   }
 }

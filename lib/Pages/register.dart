@@ -1,3 +1,4 @@
+import 'package:aquafy_systems/Pages/login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,10 +6,8 @@ import 'widgets.dart';
 
 // ignore: must_be_immutable
 class Signin extends StatefulWidget {
-  final VoidCallback showLoginPage;
   const Signin({
     super.key,
-    required this.showLoginPage,
   });
 
   @override
@@ -190,8 +189,11 @@ class _SigninState extends State<Signin> {
                   ),
                   TextButton(
                     onPressed: () {
-                      widget.showLoginPage();
-                    },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LogIn())
+                    );
+                  },
                     child: FontText(
                       text: "Already signed in, Log in.",
                       weight: FontWeight.w100,

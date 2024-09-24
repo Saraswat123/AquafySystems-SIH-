@@ -228,8 +228,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                LogIn(showSigninPage: () {}),
+                                            builder: (context) => LogIn(),
                                           ),
                                         );
                                       },

@@ -1,3 +1,5 @@
+import 'package:aquafy_systems/Pages/register.dart';
+import 'package:aquafy_systems/Pages/verify.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -5,10 +7,8 @@ import 'widgets.dart';
 
 // ignore: must_be_immutable
 class LogIn extends StatefulWidget {
-  VoidCallback showSigninPage;
   LogIn({
     super.key,
-    required this.showSigninPage,
   });
 
   @override
@@ -30,6 +30,9 @@ class _LogInState extends State<LogIn> {
           error = '';
           isloading = false;
         });
+
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const VerifyEmail()));
       }
     } on FirebaseAuthException {
       if (mounted) {
@@ -142,7 +145,10 @@ class _LogInState extends State<LogIn> {
                 ),
                 TextButton(
                   onPressed: () {
-                    widget.showSigninPage();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Signin()));
                   },
                   child: FontText(
                     text: "Isn't a member, Sign in.",

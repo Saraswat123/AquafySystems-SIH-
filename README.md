@@ -16,3 +16,13 @@ Our cost-effective, reversible greywater purification system uses a multi-step p
     
 These systems are designed to be versatile, efficient and cost-effective in decentralized water treatment systems.
 ![alt text](https://github.com/Saraswat123/Blogsaraswatdas/blob/main/public/assets/P1.jpg?raw=true)
+
+System Architect -
+![image](https://github.com/user-attachments/assets/1bb54dba-1bdc-45e0-93be-40730322c661)
+
+Buisness Model-
+![image](https://github.com/user-attachments/assets/6b847903-da44-49a8-aeca-8b04e595fa1b)
+
+![image](https://github.com/user-attachments/assets/de219bfc-afd9-4114-9e37-18af91ca0885)
+
+ThankYou.

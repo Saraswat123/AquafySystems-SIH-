@@ -15,3 +15,4 @@ Our cost-effective, reversible greywater purification system uses a multi-step p
 - IoT Integration & ML Analysis: Our system uses IoT to monitor water quality in real time, tracking pH, TDS, turbidity, BOD and COD. It offers remote control via a mobile app, predictive maintenance, and self-service technology. ML analysis provides automated performance reporting and water quality monitoring, improving efficiency and ensuring effective, sustainable treatment.
     
 These systems are designed to be versatile, efficient and cost-effective in decentralized water treatment systems.
+![alt text](https://github.com/Saraswat123/Blogsaraswatdas/blob/main/public/assets/P1.jpg?raw=true)
